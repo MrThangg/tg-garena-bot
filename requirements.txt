@@ -1,4 +1,4 @@
 python-telegram-bot==21.4
 aiohttp==3.9.4
 apscheduler==3.10.1
-
+tzdata>=2024.1

@@ -16,7 +16,15 @@ from telegram.ext import Application, CommandHandler, ContextTypes
 TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN")  # đọc từ biến môi trường
 DATA_FILE = "data.json"
 LOG_DIR = "logs"
-TZ = ZoneInfo("Asia/Ho_Chi_Minh")
+
+# Timezone VN với fallback nếu Render/Linux thiếu tzdata
+try:
+    from zoneinfo import ZoneInfo
+    TZ = ZoneInfo("Asia/Ho_Chi_Minh")
+except Exception:
+    from datetime import timedelta, timezone
+    TZ = timezone(timedelta(hours=7))
+
 # ----------------------------------------
 
 os.makedirs(LOG_DIR, exist_ok=True)
